@@ -1,0 +1,13 @@
+---
+- name: Remove installed packages
+  hosts: localhost
+  tasks:
+    - name: Remove packages
+      package:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - git
+        - wget
+        - node
+
