@@ -55,7 +55,6 @@ This is the argument passed to the `debug` module. It tells the module what mess
       - python
       - node
 ```
-Here’s an explanation of each step in your updated playbook:
 
 ---
 
