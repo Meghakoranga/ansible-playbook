@@ -1,0 +1,14 @@
+---
+- name: Configure macOS system setting
+  hosts: localhost
+  tasks:
+   - name: Enable dark mode
+     command: osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+   - name: set fastkey repeat rate
+     command: defaults write -g KeyRepeat -int 1
+   - name: Set a short delay before key repeat 
+     command: defaults write -g InitialKeyRepeat -int 15
+   - name: Show hidden folders in Finder
+     command: defaults write com.apple.finder AppleShowAllFiles yes
+   - name: Restart Finder to apply changes
+     command: killall Finder

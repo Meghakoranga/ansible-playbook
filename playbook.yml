@@ -1,0 +1,16 @@
+---
+- name: Test Playbook on Localhost
+  hosts: localhost
+  tasks:
+    - name: Create a file on localhost
+      file:
+        path: /tmp/testfile.txt
+        state: touch
+
+    - name: Download Python (macOS)
+      homebrew:
+        name: python
+        state: present
+      when: ansible_os_family == "Darwin"
+
+

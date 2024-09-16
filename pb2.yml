@@ -1,0 +1,48 @@
+---
+- name: Set up Nginx and Python on macOS
+  hosts: localhost
+  tasks:
+    - name: Install Homebrew packages (without sudo)
+      become: no  # Do not use sudo for Homebrew
+      homebrew:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - nginx
+        - python
+
+    - name: Start nginx service (macOS uses brew services)
+      become: no  # No sudo for brew commands
+      command: brew services start nginx
+
+    - name: Ensure /usr/local/var/www directory exists
+      become: yes  # Requires sudo to create directory
+      file:
+        path: /usr/local/var/www
+        state: directory
+        mode: '0755'
+
+    - name: Create a simple Python web server file
+      become: yes  # Requires sudo to write to the directory
+      copy:
+        dest: /usr/local/var/www/index.py
+        content: |
+          #!/usr/bin/env python3
+          from http.server import SimpleHTTPRequestHandler, HTTPServer
+
+          class MyHandler(SimpleHTTPRequestHandler):
+              pass
+
+          httpd = HTTPServer(('localhost', 8080), MyHandler)
+          print("Serving on port 8080...")
+          httpd.serve_forever()
+
+    - name: Ensure index.py is executable
+      become: yes  # Requires sudo to set permissions
+      file:
+        path: /usr/local/var/www/index.py
+        mode: '0755'
+
+    - name: Start Python web server
+      become: no  # No sudo for running Python script
+      shell: python3 /usr/local/var/www/index.py &
