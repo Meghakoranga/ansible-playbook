@@ -1,8 +1,8 @@
 ---
 # Ansible Playbook - YAML file
 ---
-This document provides a comprehensive guide to understanding my Ansible playbook, which has been configured to run solely on my local host. As a beginner in Ansible, I aim to explain each input and output line in detail, shedding light on how the playbook operates and interacts with the local environment. This guide is designed to help new users grasp the basics of Ansible automation and understand how to effectively use it for local tasks.
-Here’s an explanation of each step in your Ansible playbook:
+This document provides a comprehensive guide to understanding my Ansible playbook, which has been configured to run solely on my local host. As a beginner in Ansible, I aim to explain each input and output line in detail, shedding light on how the playbook operates and interacts with the local environment. This guide is designed to help new users grasp the basics of Ansible automation and understand how to effectively use it for local tasks.As ansible playbook is written in YAML so do give it a try before jumping to ansible playbook.</br>
+Here’s an explanation of each step in  Ansible playbook:
 
 ---
 ## 1. Playbook  to simply print a message
